@@ -3,7 +3,7 @@ name: Deploy React Portfolio
 on:
   push:
     branches:
-      - main  # Triggers deployment whenever you push code to the main branch
+      - main  # Change to master if your default branch is named master
 
 permissions:
   contents: read
@@ -29,20 +29,20 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: ./Assingment-2/package-lock.json 
+          cache-dependency-path: ./Assingment-2/package-lock.json # 👈 Points to Assignment 2
 
       - name: Install Dependencies
-        working-directory: ./Assingment-2  # Opens your subfolder
+        working-directory: ./Assingment-2  # 👈 Opens Assignment 2 folder
         run: npm ci 
 
       - name: Build Project
-        working-directory: ./Assingment-2 # Compiles code inside subfolder
+        working-directory: ./Assingment-2  # 👈 Builds Assignment 2 folder
         run: npm run build
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./Assingment-2/dist # Grabs Vite's compiled output folder
+          path: ./Assingment-2/dist # 👈 Grabs the compiled files from Assignment 2
 
       - name: Deploy to GitHub Pages
         id: deployment
